@@ -15,7 +15,7 @@ RUN swupd bundle-add --no-progress curl && \
     sh /tmp/miniconda.sh -bfp /usr
 
 # Use conda to install remaining tools/dependencies into /usr/local
-ENV VEP_VERSION=103.0 \
+ENV VEP_VERSION=102.0 \
     HTSLIB_VERSION=1.10.2 \
     BCFTOOLS_VERSION=1.10.2 \
     SAMTOOLS_VERSION=1.10 \
@@ -39,4 +39,12 @@ COPY --from=builder /install_root /
 COPY --from=builder /usr/local /usr/local
 COPY data /opt/data
 COPY *.pl /opt/
-WORKDIR /opt
+WORKDIR /opt/
+
+
+RUN curl -ksSL -o tmp.tar.gz https://github.com/mskcc/vcf2maf/archive/refs/tags/v1.6.21.tar.gz && \
+    tar --strip-components 1 -zxf tmp.tar.gz && \
+    rm tmp.tar.gz && \
+    chmod +x *.pl
+
+CMD ["perl", "vcf2maf.pl", "--man"]
