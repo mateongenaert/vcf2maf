@@ -29,4 +29,4 @@ ENV LD_LIBRARY_PATH "/usr/local/lib:${LD_LIBRARY_PATH}"
 RUN echo "export PATH=$PATH" > /etc/environment
 RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" > /etc/environment
 
-RUN curl --insecure -L curl http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz --output /opt/
+RUN curl --insecure -L curl http://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz --output /opt/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
